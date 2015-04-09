@@ -12,7 +12,7 @@
          map/4, foldl/5,
          shift/3,
          minute_start/1, hour_start/1, day_start/1, week_start/1, month_start/1,
-         second_diff/2, minute_diff/2, hour_diff/2
+         second_diff/2, minute_diff/2, hour_diff/2, day_diff/2
         ]).
 
 -export([iso8601/1, iso8601_basic/1]).
@@ -134,6 +134,7 @@ yesterday(Ts) ->
 second_diff(TsA, TsB) -> float((TsA - TsB)).
 minute_diff(TsA, TsB) -> float((TsA - TsB) / 60).
 hour_diff(TsA, TsB)   -> float((TsA - TsB) / (60 * 60)).
+day_diff(TsA, TsB)    -> float((TsA - TsB) / (24 * 60 * 60)).
 
 
 
@@ -284,6 +285,12 @@ diff_test() ->
                                    datetime2ts({{2013, 1, 1}, {0, 0, 0}}))),
 
     ?assertEqual(1.0, hour_diff(datetime2ts({{2013, 1, 1}, {2, 0, 0}}),
-                                datetime2ts({{2013, 1, 1}, {1, 0, 0}}))).
+                                datetime2ts({{2013, 1, 1}, {1, 0, 0}}))),
 
+    ?assertEqual(1.0, day_diff(datetime2ts({{2013, 1, 2}, {0, 0, 0}}),
+                               datetime2ts({{2013, 1, 1}, {0, 0, 0}}))),
+    ?assertEqual(3.0, day_diff(datetime2ts({{2012, 3, 1}, {0, 0, 0}}),
+                               datetime2ts({{2012, 2, 27}, {0, 0, 0}}))),
+    ?assertEqual(2.0, day_diff(datetime2ts({{2013, 3, 1}, {0, 0, 0}}),
+                               datetime2ts({{2013, 2, 27}, {0, 0, 0}}))).
 -endif.
