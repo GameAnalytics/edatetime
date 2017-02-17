@@ -18,13 +18,13 @@
 -export([iso8601/1, iso8601_basic/1]).
 -export([tomorrow/1, yesterday/1]).
 
--type timestamp() :: pos_integer().
+-type timestamp() :: integer().
 -type year()      :: pos_integer().
 -type month()     :: pos_integer().
 -type day()       :: pos_integer().
 -type hour()      :: pos_integer().
--type minute()    :: pos_integer().
--type second()    :: pos_integer().
+-type minute()    :: non_neg_integer().
+-type second()    :: non_neg_integer().
 -type datetime()  :: {{year(), month(), day()}, {hour(), minute(), second()}}.
 -type date()      :: {year(), month(), day()}.
 -export_type([timestamp/0, datetime/0, date/0]).
