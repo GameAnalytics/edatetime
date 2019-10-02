@@ -1,6 +1,6 @@
 {application, edatetime,
  [
-  {description, ""},
+  {description, "Date and time handling utilities"},
   {vsn, "1.0.2"},
   {registered, []},
   {applications, [
